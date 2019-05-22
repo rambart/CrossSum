@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		84A4667F2295F85E00A16D5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4667E2295F85E00A16D5B /* AppDelegate.swift */; };
-		84A466812295F85E00A16D5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A466802295F85E00A16D5B /* ViewController.swift */; };
+		84A466812295F85E00A16D5B /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A466802295F85E00A16D5B /* PuzzleViewController.swift */; };
 		84A466842295F85E00A16D5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A466822295F85E00A16D5B /* Main.storyboard */; };
 		84A466862295F86100A16D5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A466852295F86100A16D5B /* Assets.xcassets */; };
 		84A466892295F86100A16D5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A466872295F86100A16D5B /* LaunchScreen.storyboard */; };
+		84A466912295FE6900A16D5B /* PuzzleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A466902295FE6900A16D5B /* PuzzleCell.swift */; };
+		84A46693229604FF00A16D5B /* PuzzleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A46692229604FF00A16D5B /* PuzzleGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		84A4667B2295F85E00A16D5B /* CrossSum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossSum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A4667E2295F85E00A16D5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84A466802295F85E00A16D5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84A466802295F85E00A16D5B /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
 		84A466832295F85E00A16D5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84A466852295F86100A16D5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84A466882295F86100A16D5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84A4668A2295F86100A16D5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84A466902295FE6900A16D5B /* PuzzleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleCell.swift; sourceTree = "<group>"; };
+		84A46692229604FF00A16D5B /* PuzzleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +42,7 @@
 		84A466722295F85E00A16D5B = {
 			isa = PBXGroup;
 			children = (
+				84A46692229604FF00A16D5B /* PuzzleGenerator.swift */,
 				84A4667D2295F85E00A16D5B /* CrossSum */,
 				84A4667C2295F85E00A16D5B /* Products */,
 			);
@@ -55,7 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				84A4667E2295F85E00A16D5B /* AppDelegate.swift */,
-				84A466802295F85E00A16D5B /* ViewController.swift */,
+				84A466802295F85E00A16D5B /* PuzzleViewController.swift */,
+				84A466902295FE6900A16D5B /* PuzzleCell.swift */,
 				84A466822295F85E00A16D5B /* Main.storyboard */,
 				84A466852295F86100A16D5B /* Assets.xcassets */,
 				84A466872295F86100A16D5B /* LaunchScreen.storyboard */,
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84A466812295F85E00A16D5B /* ViewController.swift in Sources */,
+				84A466912295FE6900A16D5B /* PuzzleCell.swift in Sources */,
+				84A46693229604FF00A16D5B /* PuzzleGenerator.swift in Sources */,
+				84A466812295F85E00A16D5B /* PuzzleViewController.swift in Sources */,
 				84A4667F2295F85E00A16D5B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
