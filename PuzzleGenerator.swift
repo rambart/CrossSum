@@ -8,6 +8,129 @@
 
 import GameKit
 
+class Puzzle {
+    var answers: [Int]
+    var ops: [String]
+    var sums: [Int]
+    
+    init() {
+        let puzzle = generatePuzzle()
+        answers = puzzle.answers
+        ops = puzzle.ops
+        sums = puzzle.sums
+    }
+    
+    func zipPuzzle() -> [String] {
+        var zip = [String]()
+        var answers: [Int] = self.answers.reversed()
+        var ops: [String] = self.ops.reversed()
+        var sums: [Int] = self.sums.reversed()
+        
+        zip.append(String(answers.popLast()!))
+        zip.append(ops.popLast()!)
+        zip.append(String(answers.popLast()!))
+        zip.append(ops.popLast()!)
+        zip.append(String(answers.popLast()!))
+        zip.append(String(sums.popLast()!))
+        
+        zip.append(ops.popLast()!)
+        zip.append("")
+        zip.append(ops.popLast()!)
+        zip.append("")
+        zip.append(ops.popLast()!)
+        zip.append("")
+        
+        zip.append(String(answers.popLast()!))
+        zip.append(ops.popLast()!)
+        zip.append(String(answers.popLast()!))
+        zip.append(ops.popLast()!)
+        zip.append(String(answers.popLast()!))
+        zip.append(String(sums.popLast()!))
+        
+        zip.append(ops.popLast()!)
+        zip.append("")
+        zip.append(ops.popLast()!)
+        zip.append("")
+        zip.append(ops.popLast()!)
+        zip.append("")
+        
+        zip.append(String(answers.popLast()!))
+        zip.append(ops.popLast()!)
+        zip.append(String(answers.popLast()!))
+        zip.append(ops.popLast()!)
+        zip.append(String(answers.popLast()!))
+        zip.append(String(sums.popLast()!))
+        
+        zip.append(String(sums.popLast()!))
+        zip.append("")
+        zip.append(String(sums.popLast()!))
+        zip.append("")
+        zip.append(String(sums.popLast()!))
+        zip.append("")
+        
+        return zip
+    }
+}
+
+func zipPuzzle(puzzle: Puzzle) -> [String] {
+    var zip = [String]()
+    var answers: [Int] = puzzle.answers.reversed()
+    var ops: [String] = puzzle.ops.reversed()
+    var sums: [Int] = puzzle.sums.reversed()
+    
+    print(" \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!) =\(sums.popLast()!)")
+    print(" \(ops.popLast()!)  \(ops.popLast()!)  \(ops.popLast()!)")
+    print(" \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!) =\(sums.popLast()!)")
+    print(" \(ops.popLast()!)  \(ops.popLast()!)  \(ops.popLast()!)")
+    print(" \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!) =\(sums.popLast()!)")
+    print("\(sums.popLast()!) \(sums.popLast()!) \(sums.popLast()!)")
+    print("\n\n\n")
+    
+    zip.append(String(answers.popLast()!))
+    zip.append(ops.popLast()!)
+    zip.append(String(answers.popLast()!))
+    zip.append(ops.popLast()!)
+    zip.append(String(answers.popLast()!))
+    zip.append(String(sums.popLast()!))
+    
+    zip.append(ops.popLast()!)
+    zip.append("")
+    zip.append(ops.popLast()!)
+    zip.append("")
+    zip.append(ops.popLast()!)
+    zip.append("")
+    
+    zip.append(String(answers.popLast()!))
+    zip.append(ops.popLast()!)
+    zip.append(String(answers.popLast()!))
+    zip.append(ops.popLast()!)
+    zip.append(String(answers.popLast()!))
+    zip.append(String(sums.popLast()!))
+    
+    zip.append(ops.popLast()!)
+    zip.append("")
+    zip.append(ops.popLast()!)
+    zip.append("")
+    zip.append(ops.popLast()!)
+    zip.append("")
+    
+    zip.append(String(answers.popLast()!))
+    zip.append(ops.popLast()!)
+    zip.append(String(answers.popLast()!))
+    zip.append(ops.popLast()!)
+    zip.append(String(answers.popLast()!))
+    zip.append(String(sums.popLast()!))
+    
+    zip.append(String(sums.popLast()!))
+    zip.append("")
+    zip.append(String(sums.popLast()!))
+    zip.append("")
+    zip.append(String(sums.popLast()!))
+    zip.append("")
+    
+    return zip
+}
+
 func generatePuzzle() -> (answers: [Int], ops: [String], sums: [Int]) {
     
     var isValid = false

@@ -10,6 +10,8 @@ import UIKit
 
 class PuzzleCell: UICollectionViewCell {
     
+    var interactable = false
+    
     @IBOutlet weak var penLabel: UILabel!
     
     @IBOutlet weak var pencilStack: UIStackView!
@@ -25,11 +27,13 @@ class PuzzleCell: UICollectionViewCell {
     
     func setInteraction(_ isPartOfPuzzle: Bool) {
         if isPartOfPuzzle {
-            backgroundColor = UIColor.black
-            penLabel.textColor = UIColor.white
+            backgroundColor = UIColor.lightGray
+            penLabel.textColor = UIColor.black
+            interactable = false
         } else {
-            backgroundColor = UIColor.black
-            penLabel.textColor = UIColor.white
+            backgroundColor = UIColor.white
+            penLabel.textColor = UIColor.black
+            interactable = true
         }
     }
     

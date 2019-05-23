@@ -9,11 +9,33 @@
 import UIKit
 
 class PuzzleViewController: UIViewController {
+    
+    var puzzle = Puzzle()
+    var puzzleZip = [String]()
+    var cellSize = CGSize(width: 50, height: 50)
+    
+    
+    @IBOutlet weak var puzzleCollection: UICollectionView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        printNewPuzzle()
+        puzzleZip = puzzle.zipPuzzle()
+        
+        puzzleCollection.dataSource = self
+        puzzleCollection.delegate = self
+        
+        
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        cellSize = CGSize(width: (puzzleCollection.contentSize.width - 16) / 6, height: (puzzleCollection.contentSize.width - 16) / 6)
+        puzzleCollection.reloadData()
         
     }
 
@@ -34,19 +56,32 @@ class PuzzleViewController: UIViewController {
 
 }
 
-//extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 36
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PuzzleCell", for: indexPath) as! PuzzleCell
-//
-//    }
-//
-//
-//
-//
-//
-//}
+extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 36
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PuzzleCell", for: indexPath) as! PuzzleCell
+        
+        let answerCells = [0, 2, 4, 12, 14, 16, 24, 26, 28]
+        if answerCells.contains(indexPath.row) {
+            cell.setInteraction(false)
+            cell.setPen(mark: "")
+        } else {
+            cell.setInteraction(true)
+            cell.setPen(mark: puzzleZip[indexPath.row])
+        }
+        
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return cellSize
+    }
+
+
+
+
+}
 
