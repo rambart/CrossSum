@@ -10,7 +10,25 @@ import UIKit
 
 class PuzzleCell: UICollectionViewCell {
     
-    var interactable = false
+    var interactable = false {
+        didSet {
+            self.isUserInteractionEnabled = interactable
+        }
+    }
+    var pen = 0 {
+        didSet {
+            if pen != 0 {
+                setPen(mark:"\(pen)")
+            } else {
+                setPencil(marks: pencil)
+            }
+        }
+    }
+    var pencil = "" {
+        didSet {
+            setPencil(marks: pencil)
+        }
+    }
     
     @IBOutlet weak var penLabel: UILabel!
     
@@ -25,8 +43,8 @@ class PuzzleCell: UICollectionViewCell {
     @IBOutlet weak var pencil8Label: UILabel!
     @IBOutlet weak var pencil9Label: UILabel!
     
-    func setInteraction(_ isPartOfPuzzle: Bool) {
-        if isPartOfPuzzle {
+    func setInteraction(_ isInteractable: Bool) {
+        if !isInteractable {
             backgroundColor = UIColor.lightGray
             penLabel.textColor = UIColor.black
             interactable = false
@@ -49,12 +67,13 @@ class PuzzleCell: UICollectionViewCell {
                             pencil9Label]
         penLabel.isHidden = true
         pencilStack.isHidden = false
+        
         for label in pencilLabels {
-            label?.textColor = UIColor.white
+            label?.isOpaque = false
         }
         for digit in marks {
             guard let number = Int(String(digit)) else { return }
-            pencilLabels[number - 1]?.textColor = UIColor.darkGray
+            pencilLabels[number - 1]?.isOpaque = true
         }
     }
     
@@ -64,4 +83,29 @@ class PuzzleCell: UICollectionViewCell {
         penLabel.text = mark
     }
     
+}
+
+func answerForCell(_ index: Int) -> Int? {
+    switch index {
+    case 0:
+        return 0
+    case 2:
+        return 1
+    case 4:
+        return 2
+    case 12:
+        return 3
+    case 14:
+        return 4
+    case 16:
+        return 5
+    case 24:
+        return 6
+    case 26:
+        return 7
+    case 28:
+        return 8
+    default:
+        return nil
+    }
 }

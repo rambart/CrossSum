@@ -13,7 +13,23 @@ class PuzzleViewController: UIViewController {
     var puzzle = Puzzle()
     var puzzleZip = [String]()
     var cellSize = CGSize(width: 50, height: 50)
+    var selectedCell = PuzzleCell()
     
+    var answers = [0, 0, 0, 0, 0, 0, 0, 0, 0] {
+        didSet {
+            if answers == puzzle.answers {
+                let ac = UIAlertController(title: "Solved!", message: "Congradulations!", preferredStyle: .alert)
+                let okay = UIAlertAction(title: "Next Puzzle!", style: .default) { (_) in
+                    self.puzzle = Puzzle()
+                    self.puzzleCollection.reloadData()
+                }
+                ac.addAction(okay)
+                present(ac, animated: true)
+            }
+        }
+    }
+    
+    var pencil = ["", "", "", "", "", "", "", "", ""]
     
     @IBOutlet weak var puzzleCollection: UICollectionView!
     
@@ -53,6 +69,12 @@ class PuzzleViewController: UIViewController {
         print("\(sums.popLast()!) \(sums.popLast()!) \(sums.popLast()!)")
         print("\n\n\n")
     }
+    
+    @IBAction func pen(_ sender: UIButton) {
+        if selectedCell.isUserInteractionEnabled {
+            
+        }
+    }
 
 }
 
@@ -64,10 +86,15 @@ extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PuzzleCell", for: indexPath) as! PuzzleCell
         
-        let answerCells = [0, 2, 4, 12, 14, 16, 24, 26, 28]
-        if answerCells.contains(indexPath.row) {
+        let answersIndex = answerForCell(indexPath.row)
+        
+        if answersIndex != nil {
             cell.setInteraction(false)
-            cell.setPen(mark: "")
+            if answers[answersIndex!] != 0 {
+                cell.setPen(mark: "\(answers[answersIndex!])")
+            } else {
+                cell.setPencil(marks: pencil[answersIndex!])
+            }
         } else {
             cell.setInteraction(true)
             cell.setPen(mark: puzzleZip[indexPath.row])
@@ -80,7 +107,9 @@ extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cellSize
     }
 
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedCell = collectionView.visibleCells[indexPath.row] as! PuzzleCell
+    }
 
 
 }
