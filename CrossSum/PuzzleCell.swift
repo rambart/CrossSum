@@ -10,7 +10,7 @@ import UIKit
 
 class PuzzleCell: UICollectionViewCell {
     
-    var interactable = false {
+    var interactable = true {
         didSet {
             self.isUserInteractionEnabled = interactable
         }
@@ -69,15 +69,18 @@ class PuzzleCell: UICollectionViewCell {
         pencilStack.isHidden = false
         
         for label in pencilLabels {
-            label?.isOpaque = false
+            label?.text = ""
         }
         for digit in marks {
-            guard let number = Int(String(digit)) else { return }
-            pencilLabels[number - 1]?.isOpaque = true
+            guard let number = Int(String(digit)) else {
+                print("not a number")
+                return }
+            pencilLabels[number - 1]?.text = "\(number)"
         }
     }
     
     func setPen(mark: String) {
+        print("setting pen")
         pencilStack.isHidden = true
         penLabel.isHidden = false
         penLabel.text = mark
@@ -105,6 +108,31 @@ func answerForCell(_ index: Int) -> Int? {
         return 7
     case 28:
         return 8
+    default:
+        return nil
+    }
+}
+
+func cellForAnswer(_ answerIndex: Int) -> Int? {
+    switch answerIndex {
+    case 0:
+        return 0
+    case 1:
+        return 2
+    case 2:
+        return 4
+    case 3:
+        return 12
+    case 4:
+        return 14
+    case 5:
+        return 16
+    case 6:
+        return 24
+    case 7:
+        return 26
+    case 8:
+        return 28
     default:
         return nil
     }

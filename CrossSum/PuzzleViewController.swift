@@ -13,29 +13,47 @@ class PuzzleViewController: UIViewController {
     var puzzle = Puzzle()
     var puzzleZip = [String]()
     var cellSize = CGSize(width: 50, height: 50)
-    var selectedCell = PuzzleCell()
+    var selectedCell: Int?
+    var score = 0 {
+        didSet {
+            UserDefaults.standard.set(score, forKey: "score")
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
     
     var answers = [0, 0, 0, 0, 0, 0, 0, 0, 0] {
         didSet {
             if answers == puzzle.answers {
+                score += 1
                 let ac = UIAlertController(title: "Solved!", message: "Congradulations!", preferredStyle: .alert)
                 let okay = UIAlertAction(title: "Next Puzzle!", style: .default) { (_) in
-                    self.puzzle = Puzzle()
-                    self.puzzleCollection.reloadData()
+                    self.newPuzzle()
                 }
                 ac.addAction(okay)
                 present(ac, animated: true)
             }
+            puzzleCollection.reloadData()
         }
     }
     
-    var pencil = ["", "", "", "", "", "", "", "", ""]
+    var pencil = ["", "", "", "", "", "", "", "", ""] {
+        didSet{
+            puzzleCollection.reloadData()
+        }
+    }
     
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var puzzleCollection: UICollectionView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let oldScore = UserDefaults.standard.value(forKey: "score") {
+            score = oldScore as! Int
+        } else {
+            score = 0
+        }
         
         puzzleZip = puzzle.zipPuzzle()
         
@@ -55,24 +73,35 @@ class PuzzleViewController: UIViewController {
         
     }
 
-    @IBAction func printNewPuzzle() {
-        let puzzle = generatePuzzle()
-        var answers: [Int] = puzzle.answers.reversed()
-        var ops: [String] = puzzle.ops.reversed()
-        var sums: [Int] = puzzle.sums.reversed()
-        
-        print(" \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!) =\(sums.popLast()!)")
-        print(" \(ops.popLast()!)  \(ops.popLast()!)  \(ops.popLast()!)")
-        print(" \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!) =\(sums.popLast()!)")
-        print(" \(ops.popLast()!)  \(ops.popLast()!)  \(ops.popLast()!)")
-        print(" \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!)\(ops.popLast()!) \(answers.popLast()!) =\(sums.popLast()!)")
-        print("\(sums.popLast()!) \(sums.popLast()!) \(sums.popLast()!)")
-        print("\n\n\n")
+    @IBAction func newPuzzle() {
+        self.puzzle = Puzzle()
+        self.puzzleZip = self.puzzle.zipPuzzle()
+        self.answers = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        self.pencil = ["", "", "", "", "", "", "", "", ""]
+        self.puzzleCollection.reloadData()
+    }
+    
+    @IBAction func pencil(_ sender: UIButton) {
+        if selectedCell != nil {
+            if pencil[selectedCell!].contains("\(sender.tag)") {
+                pencil[selectedCell!] = pencil[selectedCell!].replacingOccurrences(of: "\(sender.tag)", with: "")
+            } else {
+                pencil[selectedCell!].append("\(sender.tag)")
+                answers[selectedCell!] = 0
+            }
+        }
     }
     
     @IBAction func pen(_ sender: UIButton) {
-        if selectedCell.isUserInteractionEnabled {
-            
+        if selectedCell != nil {
+            for i in 0...8 {
+                pencil[i] = pencil[i].replacingOccurrences(of: "\(sender.tag)", with: "")
+            }
+            if answers[selectedCell!] == sender.tag {
+                answers[selectedCell!] = 0
+            } else {
+                answers[selectedCell!] = sender.tag
+            }
         }
     }
 
@@ -89,17 +118,16 @@ extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let answersIndex = answerForCell(indexPath.row)
         
         if answersIndex != nil {
-            cell.setInteraction(false)
+            cell.setInteraction(true)
             if answers[answersIndex!] != 0 {
                 cell.setPen(mark: "\(answers[answersIndex!])")
             } else {
                 cell.setPencil(marks: pencil[answersIndex!])
             }
         } else {
-            cell.setInteraction(true)
+            cell.setInteraction(false)
             cell.setPen(mark: puzzleZip[indexPath.row])
         }
-        
         return cell
     }
 
@@ -108,7 +136,8 @@ extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedCell = collectionView.visibleCells[indexPath.row] as! PuzzleCell
+        selectedCell = answerForCell(indexPath.row)
+        print("tapped \(selectedCell ?? -100)")
     }
 
 
