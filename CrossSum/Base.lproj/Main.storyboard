@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +21,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8DA-hO-Tna">
                                 <rect key="frame" x="31" y="100" width="352" height="352"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BGColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8DA-hO-Tna" secondAttribute="height" multiplier="1:1" id="mzo-lp-EHt"/>
                                 </constraints>
@@ -39,7 +40,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="9nh-F8-q0K">
-                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <rect key="frame" x="7" y="7" width="56" height="56"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -121,14 +122,14 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="9nh-F8-q0K" firstAttribute="width" secondItem="SPH-2F-Imk" secondAttribute="width" id="FB6-zu-oIG"/>
+                                            <constraint firstItem="9nh-F8-q0K" firstAttribute="width" secondItem="SPH-2F-Imk" secondAttribute="width" multiplier="0.8" id="FB6-zu-oIG"/>
                                             <constraint firstItem="Urc-ra-p14" firstAttribute="centerY" secondItem="SPH-2F-Imk" secondAttribute="centerY" id="FS4-9s-O5K"/>
                                             <constraint firstItem="9nh-F8-q0K" firstAttribute="centerY" secondItem="SPH-2F-Imk" secondAttribute="centerY" id="Svf-6m-XKk"/>
                                             <constraint firstItem="9nh-F8-q0K" firstAttribute="centerX" secondItem="SPH-2F-Imk" secondAttribute="centerX" id="daJ-YD-8OT"/>
                                             <constraint firstItem="Urc-ra-p14" firstAttribute="width" secondItem="SPH-2F-Imk" secondAttribute="width" id="fIy-4E-q3b"/>
                                             <constraint firstItem="Urc-ra-p14" firstAttribute="height" secondItem="SPH-2F-Imk" secondAttribute="height" id="gZu-sb-PBX"/>
                                             <constraint firstItem="Urc-ra-p14" firstAttribute="centerX" secondItem="SPH-2F-Imk" secondAttribute="centerX" id="iaW-0y-uzk"/>
-                                            <constraint firstItem="9nh-F8-q0K" firstAttribute="height" secondItem="SPH-2F-Imk" secondAttribute="height" id="q2Y-3i-rGU"/>
+                                            <constraint firstItem="9nh-F8-q0K" firstAttribute="height" secondItem="SPH-2F-Imk" secondAttribute="height" multiplier="0.8" id="q2Y-3i-rGU"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="penLabel" destination="9nh-F8-q0K" id="3yh-pL-eGi"/>
@@ -147,7 +148,7 @@
                                 </cells>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8U0-OP-nG8">
-                                <rect key="frame" x="31" y="492" width="352" height="108"/>
+                                <rect key="frame" x="31" y="477" width="352" height="108"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YeJ-mh-6gD">
                                         <rect key="frame" x="0.0" y="0.0" width="352" height="50"/>
@@ -155,12 +156,12 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✑" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eE9-kN-oJR">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="BGColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmC-8u-sJ8">
                                                 <rect key="frame" x="36" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="1">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -171,7 +172,7 @@
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNf-we-rH9">
                                                 <rect key="frame" x="72" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="2">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -182,7 +183,7 @@
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eB0-YL-LAP">
                                                 <rect key="frame" x="108" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="3">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -193,7 +194,7 @@
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuW-fq-8dT">
                                                 <rect key="frame" x="144" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="4">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -204,7 +205,7 @@
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhW-m4-Ln5">
                                                 <rect key="frame" x="180" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="5">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -215,7 +216,7 @@
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6a-Qo-YHw">
                                                 <rect key="frame" x="216" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="6">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -226,7 +227,7 @@
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzl-yE-pQ3">
                                                 <rect key="frame" x="252" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="7">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -237,7 +238,7 @@
                                             </button>
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLO-BV-e7u">
                                                 <rect key="frame" x="288" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="8">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -248,7 +249,7 @@
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5p3-81-eKi">
                                                 <rect key="frame" x="324" y="0.0" width="28" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="9">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -265,13 +266,15 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✏︎" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wK3-Gh-Hfr">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="BGColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIB-4O-r1F">
                                                 <rect key="frame" x="36" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="1"/>
+                                                <state key="normal" title="1">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N7z-2A-u29"/>
                                                 </connections>
@@ -279,7 +282,9 @@
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wb5-Aq-elh">
                                                 <rect key="frame" x="72" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="2"/>
+                                                <state key="normal" title="2">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mwU-vf-uyU"/>
                                                 </connections>
@@ -287,7 +292,9 @@
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O40-J2-v9m">
                                                 <rect key="frame" x="108" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="3"/>
+                                                <state key="normal" title="3">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dlb-lD-jTV"/>
                                                 </connections>
@@ -295,7 +302,9 @@
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjk-Nh-3JL">
                                                 <rect key="frame" x="144" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="4"/>
+                                                <state key="normal" title="4">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zgj-GF-zii"/>
                                                 </connections>
@@ -303,7 +312,9 @@
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYL-aZ-WDW">
                                                 <rect key="frame" x="180" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="5"/>
+                                                <state key="normal" title="5">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8bm-sL-VGA"/>
                                                 </connections>
@@ -311,7 +322,9 @@
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7O-u4-Rcf">
                                                 <rect key="frame" x="216" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="6"/>
+                                                <state key="normal" title="6">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R5t-UQ-VyN"/>
                                                 </connections>
@@ -319,7 +332,9 @@
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLK-aw-HDT">
                                                 <rect key="frame" x="252" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="7"/>
+                                                <state key="normal" title="7">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KyI-Gu-Vap"/>
                                                 </connections>
@@ -327,7 +342,9 @@
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-Nc-BNU">
                                                 <rect key="frame" x="288" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="8"/>
+                                                <state key="normal" title="8">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fhB-uk-fHd"/>
                                                 </connections>
@@ -335,7 +352,9 @@
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQr-rW-yZr">
                                                 <rect key="frame" x="324" y="0.0" width="28" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="9"/>
+                                                <state key="normal" title="9">
+                                                    <color key="titleColor" name="BGColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="pencil:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZP-BO-Wkg"/>
                                                 </connections>
@@ -365,7 +384,7 @@
                         <constraints>
                             <constraint firstItem="8DA-hO-Tna" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="2Up-iL-DEs"/>
                             <constraint firstItem="IU4-Au-pWu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="Ewh-rW-C6Z"/>
-                            <constraint firstItem="8U0-OP-nG8" firstAttribute="top" secondItem="8DA-hO-Tna" secondAttribute="bottom" constant="40" id="GKR-nl-wk3"/>
+                            <constraint firstItem="8U0-OP-nG8" firstAttribute="top" secondItem="8DA-hO-Tna" secondAttribute="bottom" constant="25" id="GKR-nl-wk3"/>
                             <constraint firstItem="8DA-hO-Tna" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LwH-1Y-wb1"/>
                             <constraint firstItem="8DA-hO-Tna" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.85" id="QLd-Tf-SfU"/>
                             <constraint firstItem="1wC-rl-4fc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gkb-QF-LIA"/>
@@ -377,6 +396,15 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="pen1Btn" destination="kmC-8u-sJ8" id="WtN-wC-fYZ"/>
+                        <outlet property="pen2Btn" destination="uNf-we-rH9" id="vJK-tc-IpM"/>
+                        <outlet property="pen3Btn" destination="eB0-YL-LAP" id="w4k-n6-TfB"/>
+                        <outlet property="pen4Btn" destination="OuW-fq-8dT" id="Q9g-SX-bex"/>
+                        <outlet property="pen5Btn" destination="yhW-m4-Ln5" id="WnD-kF-JkQ"/>
+                        <outlet property="pen6Btn" destination="Q6a-Qo-YHw" id="Gs9-x1-GMi"/>
+                        <outlet property="pen7Btn" destination="Mzl-yE-pQ3" id="16m-Xs-Cwa"/>
+                        <outlet property="pen8Btn" destination="RLO-BV-e7u" id="AuC-p1-qj3"/>
+                        <outlet property="pen9Btn" destination="5p3-81-eKi" id="lnz-99-rrM"/>
                         <outlet property="puzzleCollection" destination="8DA-hO-Tna" id="8Wh-ZF-XU0"/>
                         <outlet property="scoreLabel" destination="IU4-Au-pWu" id="Jls-Zk-Hb2"/>
                     </connections>
@@ -386,4 +414,9 @@
             <point key="canvasLocation" x="137.68115942028987" y="126.35869565217392"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="BGColor">
+            <color red="0.1379999965429306" green="0.20000000298023224" blue="0.33700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

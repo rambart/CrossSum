@@ -45,8 +45,8 @@ class PuzzleCell: UICollectionViewCell {
     
     func setInteraction(_ isInteractable: Bool) {
         if !isInteractable {
-            backgroundColor = UIColor.lightGray
-            penLabel.textColor = UIColor.black
+            backgroundColor = UIColor.init(named: "BGColor")
+            penLabel.textColor = UIColor.white
             interactable = false
         } else {
             backgroundColor = UIColor.white

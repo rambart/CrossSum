@@ -10,10 +10,15 @@ import UIKit
 
 class PuzzleViewController: UIViewController {
     
+    // MARK: - Attributes
     var puzzle = Puzzle()
     var puzzleZip = [String]()
     var cellSize = CGSize(width: 50, height: 50)
-    var selectedCell: Int?
+    var selectedCell: Int? {
+        didSet {
+            puzzleCollection.reloadData()
+        }
+    }
     var score = 0 {
         didSet {
             UserDefaults.standard.set(score, forKey: "score")
@@ -42,10 +47,20 @@ class PuzzleViewController: UIViewController {
         }
     }
     
+    // MARK: - Outlets
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var puzzleCollection: UICollectionView!
+    @IBOutlet weak var pen1Btn: UIButton!
+    @IBOutlet weak var pen2Btn: UIButton!
+    @IBOutlet weak var pen3Btn: UIButton!
+    @IBOutlet weak var pen4Btn: UIButton!
+    @IBOutlet weak var pen5Btn: UIButton!
+    @IBOutlet weak var pen6Btn: UIButton!
+    @IBOutlet weak var pen7Btn: UIButton!
+    @IBOutlet weak var pen8Btn: UIButton!
+    @IBOutlet weak var pen9Btn: UIButton!
     
-
+    // MARK: - VDL
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,6 +88,7 @@ class PuzzleViewController: UIViewController {
         
     }
 
+    // MARK: - Buttons
     @IBAction func newPuzzle() {
         self.puzzle = Puzzle()
         self.puzzleZip = self.puzzle.zipPuzzle()
@@ -104,6 +120,21 @@ class PuzzleViewController: UIViewController {
             }
         }
     }
+    
+    func setButtonInteraction() {
+        let penButtons: Array<UIButton> = [pen1Btn, pen2Btn, pen3Btn, pen4Btn, pen5Btn, pen6Btn, pen7Btn, pen8Btn, pen9Btn]
+        for i in 1...9 {
+            if answers.contains(i) {
+                if answers[selectedCell!] == i {
+                    penButtons[i-1].isEnabled = true
+                } else {
+                    penButtons[i-1].isEnabled = false
+                }
+            } else {
+                penButtons[i-1].isEnabled = true
+            }
+        }
+    }
 
 }
 
@@ -124,6 +155,9 @@ extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSo
             } else {
                 cell.setPencil(marks: pencil[answersIndex!])
             }
+            if selectedCell == answersIndex {
+                cell.backgroundColor = UIColor.init(named: "Selected")
+            }
         } else {
             cell.setInteraction(false)
             cell.setPen(mark: puzzleZip[indexPath.row])
@@ -136,8 +170,12 @@ extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedCell = answerForCell(indexPath.row)
-        print("tapped \(selectedCell ?? -100)")
+        if answerForCell(indexPath.row) == selectedCell {
+            selectedCell = nil
+        } else {
+            selectedCell = answerForCell(indexPath.row)
+        }
+        
     }
 
 
