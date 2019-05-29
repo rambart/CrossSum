@@ -73,14 +73,12 @@ class PuzzleCell: UICollectionViewCell {
         }
         for digit in marks {
             guard let number = Int(String(digit)) else {
-                print("not a number")
                 return }
             pencilLabels[number - 1]?.text = "\(number)"
         }
     }
     
     func setPen(mark: String) {
-        print("setting pen")
         pencilStack.isHidden = true
         penLabel.isHidden = false
         penLabel.text = mark

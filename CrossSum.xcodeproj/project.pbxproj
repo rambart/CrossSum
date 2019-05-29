@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		848BCFA2229DDC6E0047788B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848BCFA1229DDC6E0047788B /* GameKit.framework */; };
 		84A4667F2295F85E00A16D5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4667E2295F85E00A16D5B /* AppDelegate.swift */; };
 		84A466812295F85E00A16D5B /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A466802295F85E00A16D5B /* PuzzleViewController.swift */; };
 		84A466842295F85E00A16D5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A466822295F85E00A16D5B /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		848BCFA1229DDC6E0047788B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		84A4667B2295F85E00A16D5B /* CrossSum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossSum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A4667E2295F85E00A16D5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A466802295F85E00A16D5B /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
@@ -33,18 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848BCFA2229DDC6E0047788B /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		848BCFA0229DDC6E0047788B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				848BCFA1229DDC6E0047788B /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84A466722295F85E00A16D5B = {
 			isa = PBXGroup;
 			children = (
 				84A46692229604FF00A16D5B /* PuzzleGenerator.swift */,
 				84A4667D2295F85E00A16D5B /* CrossSum */,
 				84A4667C2295F85E00A16D5B /* Products */,
+				848BCFA0229DDC6E0047788B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +114,11 @@
 				TargetAttributes = {
 					84A4667A2295F85E00A16D5B = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.GameCenter.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

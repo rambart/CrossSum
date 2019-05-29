@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import GameKit
 
 class PuzzleViewController: UIViewController {
+    
     
     // MARK: - Attributes
     var puzzle = Puzzle()
@@ -23,14 +25,17 @@ class PuzzleViewController: UIViewController {
         didSet {
             UserDefaults.standard.set(score, forKey: "score")
             scoreLabel.text = "Score: \(score)"
+            DispatchQueue.global(qos: .background).async {
+                self.saveScore(score: self.score)
+            }
         }
     }
     
     var answers = [0, 0, 0, 0, 0, 0, 0, 0, 0] {
         didSet {
             if answers == puzzle.answers {
-                score += 1
-                let ac = UIAlertController(title: "Solved!", message: "Congradulations!", preferredStyle: .alert)
+                score += 5
+                let ac = UIAlertController(title: "Solved!", message: "Congratulations!", preferredStyle: .alert)
                 let okay = UIAlertAction(title: "Next Puzzle!", style: .default) { (_) in
                     self.newPuzzle()
                 }
@@ -49,6 +54,7 @@ class PuzzleViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var puzzleCollection: UICollectionView!
     @IBOutlet weak var pen1Btn: UIButton!
     @IBOutlet weak var pen2Btn: UIButton!
@@ -64,11 +70,7 @@ class PuzzleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let oldScore = UserDefaults.standard.value(forKey: "score") {
-            score = oldScore as! Int
-        } else {
-            score = 0
-        }
+        authenticatePlayer()
         
         puzzleZip = puzzle.zipPuzzle()
         
@@ -85,16 +87,28 @@ class PuzzleViewController: UIViewController {
         
         cellSize = CGSize(width: (puzzleCollection.contentSize.width - 16) / 6, height: (puzzleCollection.contentSize.width - 16) / 6)
         puzzleCollection.reloadData()
-        
     }
 
     // MARK: - Buttons
+    @IBAction func checkForErrors() {
+        for i in 0...8 {
+            if answers[i] != 0 && answers[i] != puzzle.answers[i] {
+                puzzleCollection.cellForItem(at: IndexPath(item: cellForAnswer(i)!, section: 0))?.backgroundColor = UIColor.red
+            }
+        }
+        let ac = UIAlertController(title: "Complete", message: "Incorrect answers have been highlighted", preferredStyle: .alert)
+        let okay = UIAlertAction(title: "Okay", style: .cancel)
+        ac.addAction(okay)
+        present(ac, animated: true)
+    }
+    
     @IBAction func newPuzzle() {
         self.puzzle = Puzzle()
         self.puzzleZip = self.puzzle.zipPuzzle()
         self.answers = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.pencil = ["", "", "", "", "", "", "", "", ""]
         self.puzzleCollection.reloadData()
+        print("Answers: \(puzzle.answers)")
     }
     
     @IBAction func pencil(_ sender: UIButton) {
@@ -181,3 +195,68 @@ extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 }
 
+
+extension PuzzleViewController: GKGameCenterControllerDelegate {
+ 
+    func authenticatePlayer() {
+        let localPlayer = GKLocalPlayer.local
+        localPlayer.authenticateHandler = { (view, error) in
+            if view != nil {
+                self.present(view!, animated: true)
+            }
+            self.fetchScore()
+            self.fetchRank()
+        }
+    }
+    
+    func fetchRank() {
+        if GKLocalPlayer.local.isAuthenticated {
+            let lb = GKLeaderboard()
+            lb.identifier = "HighScore"
+            lb.timeScope = .allTime
+            lb.loadScores { (scores, error) in
+                guard error == nil else {return}
+                if (scores?.count ?? 0) > 0 {
+                    self.rankLabel.text = "Rank: \(lb.localPlayerScore!.rank)"
+                    print("rank Update: \(lb.localPlayerScore!.rank)")
+                }
+            }
+        }
+    }
+    
+    func fetchScore() {
+        if GKLocalPlayer.local.isAuthenticated {
+            let lb = GKLeaderboard()
+            lb.identifier = "HighScore"
+            lb.loadScores { (scores, error) in
+                guard error == nil else {return}
+                if let localScore = lb.localPlayerScore {
+                    self.score = Int(localScore.value)
+                }
+            }
+            print("Score Update: \(score)")
+        }
+    }
+    
+    func saveScore(score: Int) {
+        if GKLocalPlayer.local.isAuthenticated {
+            let newScore = GKScore(leaderboardIdentifier: "HighScore")
+            newScore.value = Int64(score)
+            GKScore.report([newScore]) { (error) in
+                self.fetchRank()
+            }
+        }
+    }
+    
+    @IBAction func showLeaderBoard(){
+        let gcvc = GKGameCenterViewController()
+        gcvc.gameCenterDelegate = self
+        present(gcvc, animated: true)
+    }
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true)
+    }
+    
+    
+}

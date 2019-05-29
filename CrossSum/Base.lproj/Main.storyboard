@@ -366,31 +366,65 @@
                                     <constraint firstAttribute="height" constant="108" id="XsL-hG-pKt"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU4-Au-pWu">
-                                <rect key="frame" x="308" y="28" width="90" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cig-CS-pNu">
+                                <rect key="frame" x="273" y="28.000000000000004" width="125" height="50.333333333333343"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU4-Au-pWu">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="BGColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OpP-8I-xft">
+                                        <rect key="frame" x="0.0" y="30" width="125" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="BGColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="tintColor" name="BGColor"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="DC3-HR-bPO"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="prj-QO-pWC" appends="YES" id="7Eq-JE-MLF"/>
+                                </connections>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wC-rl-4fc">
                                 <rect key="frame" x="166.66666666666666" y="686" width="81" height="30"/>
-                                <state key="normal" title="New Puzzle"/>
+                                <state key="normal" title="New Puzzle">
+                                    <color key="titleColor" name="BGColor"/>
+                                </state>
                                 <connections>
                                     <action selector="newPuzzle" destination="BYZ-38-t0r" eventType="touchUpInside" id="NaZ-uf-rKZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLT-Ol-wPp">
+                                <rect key="frame" x="16" y="28.000000000000004" width="125" height="50.333333333333343"/>
+                                <state key="normal" title="Check For Errors">
+                                    <color key="titleColor" name="BGColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkForErrors" destination="BYZ-38-t0r" eventType="touchUpInside" id="tSE-u3-PnF"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8DA-hO-Tna" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="2Up-iL-DEs"/>
-                            <constraint firstItem="IU4-Au-pWu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="Ewh-rW-C6Z"/>
+                            <constraint firstItem="KLT-Ol-wPp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="Aue-yR-VUf"/>
+                            <constraint firstItem="KLT-Ol-wPp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ESt-rI-ecr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cig-CS-pNu" secondAttribute="trailing" constant="16" id="EkT-qi-QHg"/>
                             <constraint firstItem="8U0-OP-nG8" firstAttribute="top" secondItem="8DA-hO-Tna" secondAttribute="bottom" constant="25" id="GKR-nl-wk3"/>
                             <constraint firstItem="8DA-hO-Tna" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LwH-1Y-wb1"/>
                             <constraint firstItem="8DA-hO-Tna" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.85" id="QLd-Tf-SfU"/>
+                            <constraint firstItem="KLT-Ol-wPp" firstAttribute="height" secondItem="cig-CS-pNu" secondAttribute="height" id="fw6-d6-5UU"/>
                             <constraint firstItem="1wC-rl-4fc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gkb-QF-LIA"/>
                             <constraint firstItem="8U0-OP-nG8" firstAttribute="width" secondItem="8DA-hO-Tna" secondAttribute="width" id="hbP-5l-P2n"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IU4-Au-pWu" secondAttribute="trailing" constant="16" id="i2t-6s-t3w"/>
                             <constraint firstItem="8U0-OP-nG8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kBY-AP-aUC"/>
+                            <constraint firstItem="cig-CS-pNu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="mUz-3w-vSs"/>
+                            <constraint firstItem="KLT-Ol-wPp" firstAttribute="width" secondItem="cig-CS-pNu" secondAttribute="width" id="nw8-DK-dhE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1wC-rl-4fc" secondAttribute="bottom" constant="20" id="vLn-dU-Yta"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -406,10 +440,16 @@
                         <outlet property="pen8Btn" destination="RLO-BV-e7u" id="AuC-p1-qj3"/>
                         <outlet property="pen9Btn" destination="5p3-81-eKi" id="lnz-99-rrM"/>
                         <outlet property="puzzleCollection" destination="8DA-hO-Tna" id="8Wh-ZF-XU0"/>
+                        <outlet property="rankLabel" destination="OpP-8I-xft" id="LGq-0G-StL"/>
                         <outlet property="scoreLabel" destination="IU4-Au-pWu" id="Jls-Zk-Hb2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="prj-QO-pWC">
+                    <connections>
+                        <action selector="showLeaderBoard" destination="BYZ-38-t0r" id="8mC-Hp-b3R"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="126.35869565217392"/>
         </scene>
