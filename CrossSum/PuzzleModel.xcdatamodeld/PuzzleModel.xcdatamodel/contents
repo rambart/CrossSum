@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Answers" representedClassName="Answers" syncable="YES" codeGenerationType="class">
+        <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Pencil" representedClassName="Pencil" syncable="YES" codeGenerationType="class">
+        <attribute name="values" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SavedPuzzle" representedClassName="SavedPuzzle" syncable="YES" codeGenerationType="class">
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Answers" syncable="YES"/>
+        <relationship name="pencil" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Pencil" syncable="YES"/>
+        <relationship name="zip" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Zip" syncable="YES"/>
+    </entity>
+    <entity name="Zip" representedClassName="Zip" syncable="YES" codeGenerationType="class">
+        <attribute name="values" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Answers" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Pencil" positionX="-54" positionY="0" width="128" height="60"/>
+        <element name="Zip" positionX="-36" positionY="18" width="128" height="60"/>
+        <element name="SavedPuzzle" positionX="-18" positionY="36" width="128" height="90"/>
+    </elements>
+</model>

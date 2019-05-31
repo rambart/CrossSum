@@ -11,9 +11,7 @@ import GameKit
 
 class PuzzleViewController: UIViewController {
     
-    
     // MARK: - Attributes
-    var puzzle = Puzzle()
     var puzzleZip = [String]()
     var cellSize = CGSize(width: 50, height: 50)
     var selectedCell: Int? {
@@ -30,27 +28,7 @@ class PuzzleViewController: UIViewController {
             }
         }
     }
-    
-    var answers = [0, 0, 0, 0, 0, 0, 0, 0, 0] {
-        didSet {
-            if answers == puzzle.answers {
-                score += 5
-                let ac = UIAlertController(title: "Solved!", message: "Congratulations!", preferredStyle: .alert)
-                let okay = UIAlertAction(title: "Next Puzzle!", style: .default) { (_) in
-                    self.newPuzzle()
-                }
-                ac.addAction(okay)
-                present(ac, animated: true)
-            }
-            puzzleCollection.reloadData()
-        }
-    }
-    
-    var pencil = ["", "", "", "", "", "", "", "", ""] {
-        didSet{
-            puzzleCollection.reloadData()
-        }
-    }
+    let D = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: - Outlets
     @IBOutlet weak var scoreLabel: UILabel!
@@ -71,15 +49,11 @@ class PuzzleViewController: UIViewController {
         super.viewDidLoad()
         
         authenticatePlayer()
-        
-        puzzleZip = puzzle.zipPuzzle()
+
+        puzzleZip = D.puzzle.zipPuzzle()
         
         puzzleCollection.dataSource = self
         puzzleCollection.delegate = self
-        
-        
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,12 +61,14 @@ class PuzzleViewController: UIViewController {
         
         cellSize = CGSize(width: (puzzleCollection.contentSize.width - 16) / 6, height: (puzzleCollection.contentSize.width - 16) / 6)
         puzzleCollection.reloadData()
+        highlightBtns()
     }
+    
 
     // MARK: - Buttons
     @IBAction func checkForErrors() {
         for i in 0...8 {
-            if answers[i] != 0 && answers[i] != puzzle.answers[i] {
+            if D.pen[i] != 0 && D.pen[i] != D.puzzle.answers[i] {
                 puzzleCollection.cellForItem(at: IndexPath(item: cellForAnswer(i)!, section: 0))?.backgroundColor = UIColor.red
             }
         }
@@ -103,34 +79,61 @@ class PuzzleViewController: UIViewController {
     }
     
     @IBAction func newPuzzle() {
-        self.puzzle = Puzzle()
-        self.puzzleZip = self.puzzle.zipPuzzle()
-        self.answers = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        self.pencil = ["", "", "", "", "", "", "", "", ""]
-        self.puzzleCollection.reloadData()
-        print("Answers: \(puzzle.answers)")
+        D.puzzle = Puzzle()
+        puzzleZip = D.puzzle.zipPuzzle()
+        D.pen = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        D.pencil = ["", "", "", "", "", "", "", "", ""]
+        puzzleCollection.reloadData()
+        highlightBtns()
+        print("Answers: \(D.puzzle.answers)")
     }
     
     @IBAction func pencil(_ sender: UIButton) {
         if selectedCell != nil {
-            if pencil[selectedCell!].contains("\(sender.tag)") {
-                pencil[selectedCell!] = pencil[selectedCell!].replacingOccurrences(of: "\(sender.tag)", with: "")
+            if D.pencil[selectedCell!].contains("\(sender.tag)") {
+                D.pencil[selectedCell!] = D.pencil[selectedCell!].replacingOccurrences(of: "\(sender.tag)", with: "")
             } else {
-                pencil[selectedCell!].append("\(sender.tag)")
-                answers[selectedCell!] = 0
+                D.pencil[selectedCell!].append("\(sender.tag)")
+                D.pen[selectedCell!] = 0
             }
+            puzzleCollection.reloadData()
+            highlightBtns()
         }
     }
     
     @IBAction func pen(_ sender: UIButton) {
         if selectedCell != nil {
             for i in 0...8 {
-                pencil[i] = pencil[i].replacingOccurrences(of: "\(sender.tag)", with: "")
+                D.pencil[i] = D.pencil[i].replacingOccurrences(of: "\(sender.tag)", with: "")
             }
-            if answers[selectedCell!] == sender.tag {
-                answers[selectedCell!] = 0
+            if D.pen[selectedCell!] == sender.tag {
+                D.pen[selectedCell!] = 0
             } else {
-                answers[selectedCell!] = sender.tag
+                D.pen[selectedCell!] = sender.tag
+            }
+            
+            if D.pen == D.puzzle.answers {
+                score += 5
+                let ac = UIAlertController(title: "Solved!", message: "Congratulations!", preferredStyle: .alert)
+                let okay = UIAlertAction(title: "Next Puzzle!", style: .default) { (_) in
+                    self.newPuzzle()
+                }
+                ac.addAction(okay)
+                present(ac, animated: true)
+            }
+            puzzleCollection.reloadData()
+            highlightBtns()
+        }
+    }
+    
+    func highlightBtns() {
+        let penBtns = [pen1Btn, pen2Btn, pen3Btn, pen4Btn, pen5Btn, pen6Btn, pen7Btn, pen8Btn, pen9Btn]
+        for btn in penBtns {
+            btn?.backgroundColor = UIColor(named: "BGColor")
+        }
+        for pen in D.pen {
+            if pen > 0 {
+                penBtns[pen - 1]?.backgroundColor = UIColor(named: "light")
             }
         }
     }
@@ -138,8 +141,8 @@ class PuzzleViewController: UIViewController {
     func setButtonInteraction() {
         let penButtons: Array<UIButton> = [pen1Btn, pen2Btn, pen3Btn, pen4Btn, pen5Btn, pen6Btn, pen7Btn, pen8Btn, pen9Btn]
         for i in 1...9 {
-            if answers.contains(i) {
-                if answers[selectedCell!] == i {
+            if D.pen.contains(i) {
+                if D.pen[selectedCell!] == i {
                     penButtons[i-1].isEnabled = true
                 } else {
                     penButtons[i-1].isEnabled = false
@@ -164,10 +167,10 @@ extension PuzzleViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         if answersIndex != nil {
             cell.setInteraction(true)
-            if answers[answersIndex!] != 0 {
-                cell.setPen(mark: "\(answers[answersIndex!])")
+            if D.pen[answersIndex!] != 0 {
+                cell.setPen(mark: "\(D.pen[answersIndex!])")
             } else {
-                cell.setPencil(marks: pencil[answersIndex!])
+                cell.setPencil(marks: D.pencil[answersIndex!])
             }
             if selectedCell == answersIndex {
                 cell.backgroundColor = UIColor.init(named: "Selected")
@@ -217,7 +220,7 @@ extension PuzzleViewController: GKGameCenterControllerDelegate {
             lb.loadScores { (scores, error) in
                 guard error == nil else {return}
                 if (scores?.count ?? 0) > 0 {
-                    self.rankLabel.text = "Rank: \(lb.localPlayerScore!.rank)"
+                    self.rankLabel.text = "Global Rank: \(lb.localPlayerScore!.rank)"
                     print("rank Update: \(lb.localPlayerScore!.rank)")
                 }
             }

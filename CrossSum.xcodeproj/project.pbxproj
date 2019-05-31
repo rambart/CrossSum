@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		848BCFA2229DDC6E0047788B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848BCFA1229DDC6E0047788B /* GameKit.framework */; };
+		848BCFA4229E2AA80047788B /* PuzzleSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BCFA3229E2AA80047788B /* PuzzleSaver.swift */; };
+		848BCFA7229E2F350047788B /* PuzzleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 848BCFA5229E2F350047788B /* PuzzleModel.xcdatamodeld */; };
 		84A4667F2295F85E00A16D5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4667E2295F85E00A16D5B /* AppDelegate.swift */; };
 		84A466812295F85E00A16D5B /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A466802295F85E00A16D5B /* PuzzleViewController.swift */; };
 		84A466842295F85E00A16D5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A466822295F85E00A16D5B /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		848BCFA1229DDC6E0047788B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		848BCFA3229E2AA80047788B /* PuzzleSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleSaver.swift; sourceTree = "<group>"; };
+		848BCFA6229E2F350047788B /* PuzzleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PuzzleModel.xcdatamodel; sourceTree = "<group>"; };
 		84A4667B2295F85E00A16D5B /* CrossSum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossSum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A4667E2295F85E00A16D5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A466802295F85E00A16D5B /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +57,7 @@
 		84A466722295F85E00A16D5B = {
 			isa = PBXGroup;
 			children = (
+				848BCFA3229E2AA80047788B /* PuzzleSaver.swift */,
 				84A46692229604FF00A16D5B /* PuzzleGenerator.swift */,
 				84A4667D2295F85E00A16D5B /* CrossSum */,
 				84A4667C2295F85E00A16D5B /* Products */,
@@ -78,6 +83,7 @@
 				84A466852295F86100A16D5B /* Assets.xcassets */,
 				84A466872295F86100A16D5B /* LaunchScreen.storyboard */,
 				84A4668A2295F86100A16D5B /* Info.plist */,
+				848BCFA5229E2F350047788B /* PuzzleModel.xcdatamodeld */,
 			);
 			path = CrossSum;
 			sourceTree = "<group>";
@@ -158,10 +164,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848BCFA4229E2AA80047788B /* PuzzleSaver.swift in Sources */,
 				84A466912295FE6900A16D5B /* PuzzleCell.swift in Sources */,
 				84A46693229604FF00A16D5B /* PuzzleGenerator.swift in Sources */,
 				84A466812295F85E00A16D5B /* PuzzleViewController.swift in Sources */,
 				84A4667F2295F85E00A16D5B /* AppDelegate.swift in Sources */,
+				848BCFA7229E2F350047788B /* PuzzleModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +369,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		848BCFA5229E2F350047788B /* PuzzleModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				848BCFA6229E2F350047788B /* PuzzleModel.xcdatamodel */,
+			);
+			currentVersion = 848BCFA6229E2F350047788B /* PuzzleModel.xcdatamodel */;
+			path = PuzzleModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 84A466732295F85E00A16D5B /* Project object */;
 }
