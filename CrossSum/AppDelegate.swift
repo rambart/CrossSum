@@ -8,6 +8,17 @@
 
 import UIKit
 
+
+// This app's adMobID ca-app-pub-8018625094361074~7751354248
+
+let intersitialAdID = "ca-app-pub-3940256099942544/4411468910"
+// CrossSum ad unit: "ca-app-pub-8018625094361074/8682837125"
+// test interstitial unit: "ca-app-pub-3940256099942544/4411468910"
+
+let bannerAdID = "ca-app-pub-3940256099942544/2934735716"
+// CrossSum ad unit: "ca-app-pub-8018625094361074/4803194060"
+// test banner ad: "ca-app-pub-3940256099942544/2934735716"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -8,8 +8,9 @@
 
 import UIKit
 import GameKit
+import GoogleMobileAds
 
-class PuzzleViewController: UIViewController {
+class PuzzleViewController: UIViewController, GADInterstitialDelegate {
     
     // MARK: - Attributes
     var puzzleZip = [String]()
@@ -29,6 +30,10 @@ class PuzzleViewController: UIViewController {
         }
     }
     let D = UIApplication.shared.delegate as! AppDelegate
+    
+    // MARK: - Google Ads
+    var interstitial: GADInterstitial!
+
     
     // MARK: - Outlets
     @IBOutlet weak var scoreLabel: UILabel!
@@ -54,6 +59,9 @@ class PuzzleViewController: UIViewController {
         
         puzzleCollection.dataSource = self
         puzzleCollection.delegate = self
+        
+        interstitial = createAndLoadInterstitial()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,6 +70,17 @@ class PuzzleViewController: UIViewController {
         cellSize = CGSize(width: (puzzleCollection.contentSize.width - 16) / 6, height: (puzzleCollection.contentSize.width - 16) / 6)
         puzzleCollection.reloadData()
         highlightBtns()
+    }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: intersitialAdID)
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
     }
     
 
@@ -117,6 +136,11 @@ class PuzzleViewController: UIViewController {
                 let ac = UIAlertController(title: "Solved!", message: "Congratulations!", preferredStyle: .alert)
                 let okay = UIAlertAction(title: "Next Puzzle!", style: .default) { (_) in
                     self.newPuzzle()
+                    if self.interstitial.isReady {
+                        self.interstitial.present(fromRootViewController: self)
+                    } else {
+                        print("Ad wasn't ready")
+                    }
                 }
                 ac.addAction(okay)
                 present(ac, animated: true)

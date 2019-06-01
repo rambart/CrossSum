@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		203A32C9720C30EB6FF60E21 /* Pods_CrossSum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4A2666E8BB38941C24B435 /* Pods_CrossSum.framework */; };
 		848BCFA2229DDC6E0047788B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848BCFA1229DDC6E0047788B /* GameKit.framework */; };
 		848BCFA4229E2AA80047788B /* PuzzleSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BCFA3229E2AA80047788B /* PuzzleSaver.swift */; };
-		848BCFA7229E2F350047788B /* PuzzleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 848BCFA5229E2F350047788B /* PuzzleModel.xcdatamodeld */; };
 		84A4667F2295F85E00A16D5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4667E2295F85E00A16D5B /* AppDelegate.swift */; };
 		84A466812295F85E00A16D5B /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A466802295F85E00A16D5B /* PuzzleViewController.swift */; };
 		84A466842295F85E00A16D5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A466822295F85E00A16D5B /* Main.storyboard */; };
@@ -17,12 +17,14 @@
 		84A466892295F86100A16D5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A466872295F86100A16D5B /* LaunchScreen.storyboard */; };
 		84A466912295FE6900A16D5B /* PuzzleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A466902295FE6900A16D5B /* PuzzleCell.swift */; };
 		84A46693229604FF00A16D5B /* PuzzleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A46692229604FF00A16D5B /* PuzzleGenerator.swift */; };
+		84C8A1F022A1E6F500EE304C /* IAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8A1EF22A1E6F500EE304C /* IAP.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5569A02AB062BE3B30D8230B /* Pods-CrossSum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossSum.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrossSum/Pods-CrossSum.release.xcconfig"; sourceTree = "<group>"; };
+		5DBF0AE11775D54CE918CB29 /* Pods-CrossSum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossSum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrossSum/Pods-CrossSum.debug.xcconfig"; sourceTree = "<group>"; };
 		848BCFA1229DDC6E0047788B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		848BCFA3229E2AA80047788B /* PuzzleSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleSaver.swift; sourceTree = "<group>"; };
-		848BCFA6229E2F350047788B /* PuzzleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PuzzleModel.xcdatamodel; sourceTree = "<group>"; };
 		84A4667B2295F85E00A16D5B /* CrossSum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossSum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A4667E2295F85E00A16D5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A466802295F85E00A16D5B /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +34,8 @@
 		84A4668A2295F86100A16D5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84A466902295FE6900A16D5B /* PuzzleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleCell.swift; sourceTree = "<group>"; };
 		84A46692229604FF00A16D5B /* PuzzleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGenerator.swift; sourceTree = "<group>"; };
+		84C8A1EF22A1E6F500EE304C /* IAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP.swift; sourceTree = "<group>"; };
+		FF4A2666E8BB38941C24B435 /* Pods_CrossSum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrossSum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,16 +44,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				848BCFA2229DDC6E0047788B /* GameKit.framework in Frameworks */,
+				203A32C9720C30EB6FF60E21 /* Pods_CrossSum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41F1E5D82DC47AB023532E7F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5DBF0AE11775D54CE918CB29 /* Pods-CrossSum.debug.xcconfig */,
+				5569A02AB062BE3B30D8230B /* Pods-CrossSum.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		848BCFA0229DDC6E0047788B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				848BCFA1229DDC6E0047788B /* GameKit.framework */,
+				FF4A2666E8BB38941C24B435 /* Pods_CrossSum.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -59,9 +74,11 @@
 			children = (
 				848BCFA3229E2AA80047788B /* PuzzleSaver.swift */,
 				84A46692229604FF00A16D5B /* PuzzleGenerator.swift */,
+				84C8A1EF22A1E6F500EE304C /* IAP.swift */,
 				84A4667D2295F85E00A16D5B /* CrossSum */,
 				84A4667C2295F85E00A16D5B /* Products */,
 				848BCFA0229DDC6E0047788B /* Frameworks */,
+				41F1E5D82DC47AB023532E7F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,7 +100,6 @@
 				84A466852295F86100A16D5B /* Assets.xcassets */,
 				84A466872295F86100A16D5B /* LaunchScreen.storyboard */,
 				84A4668A2295F86100A16D5B /* Info.plist */,
-				848BCFA5229E2F350047788B /* PuzzleModel.xcdatamodeld */,
 			);
 			path = CrossSum;
 			sourceTree = "<group>";
@@ -95,9 +111,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84A4668D2295F86100A16D5B /* Build configuration list for PBXNativeTarget "CrossSum" */;
 			buildPhases = (
+				F0CD8C2A7ECC6B98974D4E0D /* [CP] Check Pods Manifest.lock */,
 				84A466772295F85E00A16D5B /* Sources */,
 				84A466782295F85E00A16D5B /* Frameworks */,
 				84A466792295F85E00A16D5B /* Resources */,
+				255E139ED810291884217246 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,6 +177,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		255E139ED810291884217246 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CrossSum/Pods-CrossSum-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrossSum/Pods-CrossSum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0CD8C2A7ECC6B98974D4E0D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CrossSum-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84A466772295F85E00A16D5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -168,8 +227,8 @@
 				84A466912295FE6900A16D5B /* PuzzleCell.swift in Sources */,
 				84A46693229604FF00A16D5B /* PuzzleGenerator.swift in Sources */,
 				84A466812295F85E00A16D5B /* PuzzleViewController.swift in Sources */,
+				84C8A1F022A1E6F500EE304C /* IAP.swift in Sources */,
 				84A4667F2295F85E00A16D5B /* AppDelegate.swift in Sources */,
-				848BCFA7229E2F350047788B /* PuzzleModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +372,7 @@
 		};
 		84A4668E2295F86100A16D5B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DBF0AE11775D54CE918CB29 /* Pods-CrossSum.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -331,6 +391,7 @@
 		};
 		84A4668F2295F86100A16D5B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5569A02AB062BE3B30D8230B /* Pods-CrossSum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -369,19 +430,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		848BCFA5229E2F350047788B /* PuzzleModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				848BCFA6229E2F350047788B /* PuzzleModel.xcdatamodel */,
-			);
-			currentVersion = 848BCFA6229E2F350047788B /* PuzzleModel.xcdatamodel */;
-			path = PuzzleModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 84A466732295F85E00A16D5B /* Project object */;
 }
