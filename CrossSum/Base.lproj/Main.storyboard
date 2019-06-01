@@ -23,27 +23,30 @@
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="3xq-Q5-wsh">
-                                        <rect key="frame" x="10.333333333333343" y="0.0" width="393.33333333333326" height="42.333333333333336"/>
+                                        <rect key="frame" x="10.333333333333343" y="0.0" width="393.33333333333326" height="50.333333333333336"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGp-fg-Zpw">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="42.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50.333333333333336"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="LN6-dd-UHC"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="?"/>
+                                                <connections>
+                                                    <action selector="help" destination="BYZ-38-t0r" eventType="touchUpInside" id="OJK-Zi-aXG"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="cig-CS-pNu">
-                                                <rect key="frame" x="150" y="0.0" width="243.33333333333337" height="42.333333333333336"/>
+                                                <rect key="frame" x="150" y="0.0" width="243.33333333333337" height="50.333333333333336"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IU4-Au-pWu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="243.33333333333334" height="25.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="243.33333333333334" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <color key="textColor" name="BGColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Global Rank: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OpP-8I-xft">
-                                                        <rect key="frame" x="0.0" y="25.333333333333336" width="243.33333333333334" height="17"/>
+                                                        <rect key="frame" x="0.0" y="30" width="243.33333333333334" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" name="BGColor"/>
                                                         <nil key="highlightedColor"/>
@@ -58,7 +61,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="epW-by-y0t">
-                                        <rect key="frame" x="10.333333333333343" y="50.333333333333329" width="393.33333333333326" height="48"/>
+                                        <rect key="frame" x="10.333333333333343" y="58.333333333333329" width="393.33333333333326" height="48"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLT-Ol-wPp">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="48"/>
@@ -81,13 +84,13 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="⟳"/>
                                                 <connections>
-                                                    <action selector="newPuzzle" destination="BYZ-38-t0r" eventType="touchUpInside" id="oM3-d0-Jq2"/>
+                                                    <action selector="newPuzzleWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cDC-DX-TeO"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8DA-hO-Tna">
-                                        <rect key="frame" x="31" y="106.33333333333331" width="352" height="352"/>
+                                        <rect key="frame" x="31" y="114.33333333333337" width="352" height="352"/>
                                         <color key="backgroundColor" name="BGColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8DA-hO-Tna" secondAttribute="height" multiplier="1:1" id="mma-ML-2sQ"/>
@@ -201,7 +204,7 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8U0-OP-nG8">
-                                        <rect key="frame" x="31" y="466.33333333333326" width="352" height="104"/>
+                                        <rect key="frame" x="31" y="474.33333333333326" width="352" height="104"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YeJ-mh-6gD">
                                                 <rect key="frame" x="0.0" y="0.0" width="352" height="48"/>
@@ -417,22 +420,14 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="rd0-3H-qGk">
-                                        <rect key="frame" x="0.0" y="578.33333333333337" width="414" height="129.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="586.33333333333337" width="414" height="129.66666666666663"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEv-Ms-AFJ">
-                                        <rect key="frame" x="31" y="716" width="352" height="0.0"/>
-                                        <color key="backgroundColor" name="BGColor"/>
-                                        <state key="normal" title="Go Premium">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8DA-hO-Tna" firstAttribute="width" secondItem="zcp-8x-PFA" secondAttribute="width" multiplier="0.85" id="1N3-uZ-0As"/>
                                     <constraint firstItem="epW-by-y0t" firstAttribute="width" secondItem="3xq-Q5-wsh" secondAttribute="width" id="Itc-TH-aAg"/>
                                     <constraint firstItem="rd0-3H-qGk" firstAttribute="width" secondItem="zcp-8x-PFA" secondAttribute="width" id="P60-Ej-ZNd"/>
-                                    <constraint firstItem="wEv-Ms-AFJ" firstAttribute="width" secondItem="8DA-hO-Tna" secondAttribute="width" id="ahP-Yc-7RZ"/>
                                     <constraint firstItem="3xq-Q5-wsh" firstAttribute="width" secondItem="zcp-8x-PFA" secondAttribute="width" multiplier="0.95" id="dDo-YM-HPR"/>
                                     <constraint firstItem="8U0-OP-nG8" firstAttribute="width" secondItem="8DA-hO-Tna" secondAttribute="width" id="tZ2-mt-Qg7"/>
                                 </constraints>
@@ -457,6 +452,7 @@
                         <outlet property="pen7Btn" destination="Mzl-yE-pQ3" id="16m-Xs-Cwa"/>
                         <outlet property="pen8Btn" destination="RLO-BV-e7u" id="AuC-p1-qj3"/>
                         <outlet property="pen9Btn" destination="5p3-81-eKi" id="lnz-99-rrM"/>
+                        <outlet property="pointsLabel" destination="4em-VW-MF4" id="Ga4-cb-a5p"/>
                         <outlet property="puzzleCollection" destination="8DA-hO-Tna" id="8Wh-ZF-XU0"/>
                         <outlet property="rankLabel" destination="OpP-8I-xft" id="LGq-0G-StL"/>
                         <outlet property="scoreLabel" destination="IU4-Au-pWu" id="Jls-Zk-Hb2"/>

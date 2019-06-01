@@ -20,6 +20,7 @@ class PuzzleViewController: UIViewController, GADInterstitialDelegate {
             puzzleCollection.reloadData()
         }
     }
+    var maxPoints = 4
     var score = 0 {
         didSet {
             UserDefaults.standard.set(score, forKey: "score")
@@ -38,6 +39,7 @@ class PuzzleViewController: UIViewController, GADInterstitialDelegate {
     // MARK: - Outlets
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var puzzleCollection: UICollectionView!
     @IBOutlet weak var pen1Btn: UIButton!
     @IBOutlet weak var pen2Btn: UIButton!
@@ -53,12 +55,14 @@ class PuzzleViewController: UIViewController, GADInterstitialDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Sign in
         authenticatePlayer()
 
+        // Setup Puzzle
         puzzleZip = D.puzzle.zipPuzzle()
-        
         puzzleCollection.dataSource = self
         puzzleCollection.delegate = self
+        updatePointValue()
         
         interstitial = createAndLoadInterstitial()
 
@@ -83,28 +87,116 @@ class PuzzleViewController: UIViewController, GADInterstitialDelegate {
         interstitial = createAndLoadInterstitial()
     }
     
-
-    // MARK: - Buttons
-    @IBAction func checkForErrors() {
-        for i in 0...8 {
-            if D.pen[i] != 0 && D.pen[i] != D.puzzle.answers[i] {
-                puzzleCollection.cellForItem(at: IndexPath(item: cellForAnswer(i)!, section: 0))?.backgroundColor = UIColor.red
+    func updatePointValue() {
+        if UserDefaults.standard.bool(forKey: "Subscription") {
+            maxPoints = 5
+        } else {
+            maxPoints = 4
+        }
+        pointsLabel.text = ""
+        for i in 1...maxPoints {
+            if i <= maxPoints - D.pointPenalty {
+                pointsLabel.text?.append("★")
+            } else {
+                pointsLabel.text?.append("☆")
             }
         }
-        let ac = UIAlertController(title: "Complete", message: "Incorrect answers have been highlighted", preferredStyle: .alert)
-        let okay = UIAlertAction(title: "Okay", style: .cancel)
-        ac.addAction(okay)
+    }
+    
+
+    // MARK: - Buttons
+    @IBAction func help() {
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let howToPlay = UIAlertAction(title: "How To Play", style: .default) { (_) in
+            let message = "The goal of a cross sum puzzle is to enter each of the numbers 1-9 into the grid to simultaneously satify the six different equations.\n\nEach operation in a cross sum is performed from left to right or top to bottom instead of the normal order of operations. Also, each opperation cannot result in an irrational or negative number.\nFor example a row of 1-3+4=2 is not legal as 1-3 results in a negative number. 4-3+1=2 would however be legal. A row of 3÷2×4=6 is similarly illegal as 3÷2 is an irrational number.\n\nIf you need more help, tap the ☑︎ button to show which boxes have been filled in incorrectly.\n\nThe stars above each puzzle represents how many points the puzzle is worth. Each puzzle can earn you up to 4 points to help you climb the leaderboard (or 5 points if you have a subscription). Each time you check for errors the puzzle becomes worth 1 less point so be careful."
+            let htp = UIAlertController(title: "How To Play", message: message, preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "Got it", style: .cancel)
+            htp.addAction(dismiss)
+            self.present(htp, animated: true)
+        }
+        let purchaseMonthly = UIAlertAction(title: "Start Monthly Subscription", style: .default) { (_) in
+            // IAPService.shared.purchase("Rambart.CrossSumUnlimited.Monthly")
+            let sub = UserDefaults.standard.bool(forKey: "Subscription")
+            UserDefaults.standard.set(!sub, forKey: "Subscription")
+            self.updatePointValue()
+        }
+        let purchaseYearly = UIAlertAction(title: "Start Yearly Subscription", style: .default) { (_) in
+            IAPService.shared.purchase("Rambart.CrossSumUnlimited.Subscription")
+        }
+        let restorePurchases = UIAlertAction(title: "Restore Purchases", style: .default) { (_) in
+            IAPService.shared.paymentQueue.restoreCompletedTransactions()
+            let ac = UIAlertController(title: "Restored", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Okay", style: .cancel))
+            self.present(ac, animated: true)
+        }
+        let close = UIAlertAction(title: "Close", style: .cancel)
+        ac.addAction(howToPlay)
+        ac.addAction(purchaseMonthly)
+        ac.addAction(purchaseYearly)
+        ac.addAction(restorePurchases)
+        ac.addAction(close)
         present(ac, animated: true)
     }
     
-    @IBAction func newPuzzle() {
-        D.puzzle = Puzzle()
-        puzzleZip = D.puzzle.zipPuzzle()
-        D.pen = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        D.pencil = ["", "", "", "", "", "", "", "", ""]
-        puzzleCollection.reloadData()
-        highlightBtns()
-        print("Answers: \(D.puzzle.answers)")
+    @IBAction func checkForErrors() {
+        let ac = UIAlertController(title: "Check For Errors", message: "This will highlight all incorrect squares and decrease the puzzle's point value by 1.", preferredStyle: .alert)
+        let doIt = UIAlertAction(title: "Do It", style: .default) { (_) in
+            if (self.maxPoints - self.D.pointPenalty) > 1 {
+                self.D.pointPenalty += 1
+                self.updatePointValue()
+            }
+            for i in 0...8 {
+                if self.D.pen[i] != 0 && self.D.pen[i] != self.D.puzzle.answers[i] {
+                    self.puzzleCollection.cellForItem(at: IndexPath(item: cellForAnswer(i)!, section: 0))?.backgroundColor = UIColor.red
+                }
+            }
+            if UserDefaults.standard.bool(forKey: "Subscription") {
+                let confirm = UIAlertController(title: "Complete", message: "Incorrect answers have been highlighted", preferredStyle: .alert)
+                let okay = UIAlertAction(title: "Okay", style: .cancel)
+                confirm.addAction(okay)
+                self.present(confirm, animated: true)
+            } else {
+                if self.interstitial.isReady {
+                    self.interstitial.present(fromRootViewController: self)
+                } else {
+                    print("Interstital not ready")
+                }
+            }
+        }
+        let close = UIAlertAction(title: "Close", style: .cancel)
+        ac.addAction(doIt)
+        ac.addAction(close)
+        present(ac, animated: true)
+    }
+    
+    @IBAction func newPuzzle(sender: UIButton?) {
+        func createNewPuzzle() {
+            self.D.puzzle = Puzzle()
+            self.puzzleZip = self.D.puzzle.zipPuzzle()
+            self.D.pen = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+            self.D.pencil = ["", "", "", "", "", "", "", "", ""]
+            self.puzzleCollection.reloadData()
+            self.updatePointValue()
+            self.highlightBtns()
+            print("Answers: \(self.D.puzzle.answers)")
+        }
+        if sender != nil {
+            let ac = UIAlertController(title: "Abandon Puzzle?", message: "This will delete the current puzzle and devalue the next puzzle", preferredStyle: .alert)
+            let doIt = UIAlertAction(title: "Do It", style: .default) { (_) in
+                self.D.pointPenalty = 1
+                createNewPuzzle()
+                if self.interstitial.isReady && !UserDefaults.standard.bool(forKey: "Subscription"){
+                    self.interstitial.present(fromRootViewController: self)
+                }
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+            ac.addAction(doIt)
+            ac.addAction(cancel)
+            present(ac, animated: true)
+        } else {
+            D.pointPenalty = 0
+            createNewPuzzle()
+        }
     }
     
     @IBAction func pencil(_ sender: UIButton) {
@@ -135,7 +227,7 @@ class PuzzleViewController: UIViewController, GADInterstitialDelegate {
                 score += 5
                 let ac = UIAlertController(title: "Solved!", message: "Congratulations!", preferredStyle: .alert)
                 let okay = UIAlertAction(title: "Next Puzzle!", style: .default) { (_) in
-                    self.newPuzzle()
+                    self.newPuzzle(sender: nil)
                     if self.interstitial.isReady {
                         self.interstitial.present(fromRootViewController: self)
                     } else {

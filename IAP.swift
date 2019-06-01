@@ -17,7 +17,7 @@ class IAPService: NSObject {
     let paymentQueue = SKPaymentQueue.default()
     
     func getProducts() {
-        let products: Set = ["Rambart.CrossSum.Subscription"]
+        let products: Set = ["Rambart.CrossSumUnlimited.Monthly", "Rambart.CrossSumUnlimited.Subscription"]
         let request = SKProductsRequest(productIdentifiers: products)
         request.delegate = self
         request.start()
@@ -25,7 +25,7 @@ class IAPService: NSObject {
     }
     
     func purchase(_ product: String) {
-        guard let productToPurchase = products.filter({ $0.productIdentifier == product}).first else {return}
+        guard let productToPurchase = products.filter({ $0.productIdentifier == product}).first else {print("product not found"); return}
         let payment = SKPayment(product: productToPurchase)
         paymentQueue.add(payment)
     }
@@ -45,10 +45,12 @@ extension IAPService: SKPaymentTransactionObserver {
             case .purchasing:
                 break
             case .purchased, .restored:
-                let id = transaction.payment.productIdentifier
-                UserDefaults.standard.set(true, forKey: id)
+                UserDefaults.standard.set(true, forKey: "Subscription")
                 queue.finishTransaction(transaction)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "purchased"), object: nil)
+            case .failed:
+                UserDefaults.standard.set(false, forKey: "Subscription")
+                queue.finishTransaction(transaction)
             default:
                 queue.finishTransaction(transaction)
             }

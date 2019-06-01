@@ -11,7 +11,7 @@ import GameKit
 
 extension Puzzle {
     
-    func savePuzzle(pen: [Int], pencil: [String]) {
+    func savePuzzle(pen: [Int], pencil: [String], pointPenalty: Int) {
         let PuzzleDictionary: Dictionary<String, Array<Any>> = ["answers" : self.answers,
                                                                 "ops" : self.ops,
                                                                 "sums" : self.sums,
